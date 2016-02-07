@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid } from './Grid.jsx'
 
 export class App extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        Hi
+        <Grid />
       </div>
     )
   }

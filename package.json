@@ -4,7 +4,7 @@
   "description": "Classic snake with react redux",
   "main": "index.js",
   "scripts": {
-   "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'"
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,6 @@
     "react-mixin": "^2.0.2",
     "react-redux": "^4.4.0",
     "react-router": "^1.0.3",
-    "redux": "^3.3.0",
-    "socket.io-client": "^1.4.5"
+    "redux": "^3.3.0"
   }
 }
