@@ -4,7 +4,7 @@ import { List, Map, fromJS } from 'immutable'
 import reducer from '../src/reducer.js'
 
 describe('reducers', () => {
-  describe('interaction reducers', () => {
+  describe('interaction behavior', () => {
     it('handles START_GAME', () => {
       const initialState = Map({
         playing: false
@@ -44,11 +44,13 @@ describe('reducers', () => {
       }))
     })
   })
-  describe('main reducer NEXT', () => {
-    it('handles NEXT', () => {
+  describe('NEXT movement behavior', () => {
+    it('goes UP legally', () => {
       const initialState = Map({
         direction: 'UP',
-        snake: List.of(0, 1)
+        snake: List.of(67),
+        playing: true,
+        gameover: false
       })
       const action = {
         type: 'NEXT'
@@ -56,8 +58,49 @@ describe('reducers', () => {
       const nextState = reducer(initialState, action)
       expect(nextState).to.equal(fromJS({
         direction: 'UP',
-        snake: List.of(0, 1)
+        snake: List.of(37),
+        playing: true,
+        gameover: false
       }))
     })
+    it('doesn\'t go UP illegally', () => {
+      const initialState = Map({
+        direction: 'UP',
+        snake: List.of(1),
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'UP',
+        snake: List.of(1),
+        playing: false,
+        gameover: true
+      }))
+    })
+    it('goes DOWN legally')
+    it('doesn\'t go DOWN illegally')
+
+    it('goes LEFT legally')
+    it('doesn\'t go LEFT illegally')
+
+    it('goes RIGHT legally')
+    it('doesn\'t go RIGHT illegally')
+
+  })
+  describe('NEXT snake behavior', () => {
+    it('doesn\'t eat itself')
+    it('increases in length after eating')
+  })
+  describe('NEXT food behavior', () => {
+    it('consumes food')
+    it('appears in new place after being consumed')
+  })
+  describe('NEXT score behavior', () => {
+    it('increases on food consumption')
+    it('increases with multiplier of snake length')
   })
 })

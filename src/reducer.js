@@ -33,7 +33,6 @@ function moveSnake(state, change) {
     (currentHead % 30 === 0 && change === -1) ||
     ((currentHead + 1) % 30 === 0 && change === 1))
   {
-    console.log(state.set('playing', false).set('gameover', true))
     return state.set('playing', false).set('gameover', true)
   }
   return state
