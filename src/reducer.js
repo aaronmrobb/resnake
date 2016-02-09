@@ -1,4 +1,5 @@
 import { List, Map } from 'immutable'
+import initialGame from './initial-game.js'
 
 function startGame(state) {
   return state.set('playing', true)
@@ -58,17 +59,19 @@ function generateFood() {
 }
 
 function checkSnake(state) {
-  if(state.get('snake').indexOf(state.get('snake').first()) !== state.get('snake').lastIndexOf(state.get('snake').first())){
-    return state.set('playing', false).set('gameover', true).set('snake', state.get('snake').pop())
-  }
-  if(state.get('snake').size > state.get('length')){
+  if(state.get('snake').indexOf(state.get('snake').first()) !==
+  state.get('snake').lastIndexOf(state.get('snake').first())){
+    return state.set('playing', false)
+                .set('gameover', true)
+                .set('snake', state.get('snake').pop())
+  } else if (state.get('snake').size > state.get('length')){
     return state.set('snake', state.get('snake').pop())
   }
   return state
 }
 
 
-export default function(state = Map(), action) {
+export default function(state = initialGame, action) {
   switch(action.type) {
     case 'START_GAME':
       return startGame(state)

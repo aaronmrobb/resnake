@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Cell from './Cell.jsx'
+import reactMixin from 'react-mixin'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import { connect } from 'react-redux'
 
 export class Grid extends Component {
   constructor(props){
@@ -15,3 +18,14 @@ export class Grid extends Component {
     )
   }
 }
+
+reactMixin(Grid.prototype, PureRenderMixin)
+
+function mapStateToProps(state) {
+  return {
+    snake: state.get('snake'),
+    food: state.get('food')
+  }
+}
+
+export const GridContainer = connect(mapStateToProps)(Grid)

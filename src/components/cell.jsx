@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
+import reactMixin from 'react-mixin'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 
-export default class Cell extends Component {
+class Cell extends Component {
   constructor(props) {
     super(props)
   }
   render() {
     return(
-      <div>
+      <div className={this.props.occupant}>
         Cell
       </div>
     )
   }
 }
+
+reactMixin(Cell.prototype, PureRenderMixin)
+
+export default Cell
