@@ -49,6 +49,7 @@ describe('reducers', () => {
       const initialState = Map({
         direction: 'UP',
         snake: List.of(67),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -59,6 +60,7 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'UP',
         snake: [37],
+        length: 1,
         playing: true,
         gameover: false
       }))
@@ -67,6 +69,7 @@ describe('reducers', () => {
       const initialState = Map({
         direction: 'UP',
         snake: List.of(1),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -77,6 +80,7 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'UP',
         snake: [1],
+        length: 1,
         playing: false,
         gameover: true
       }))
@@ -85,6 +89,7 @@ describe('reducers', () => {
       const initialState = Map({
         direction: 'DOWN',
         snake: List.of(1),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -95,6 +100,7 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'DOWN',
         snake: [31],
+        length: 1,
         playing: true,
         gameover: false
       }))
@@ -103,6 +109,7 @@ describe('reducers', () => {
       const initialState = Map({
         direction: 'DOWN',
         snake: List.of(899),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -113,16 +120,17 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'DOWN',
         snake: [899],
+        length: 1,
         playing: false,
         gameover: true
       }))
     })
 
-    it('goes LEFT legally')
-    it('doesn\'t go LEFT illegally',() => {
+    it('goes LEFT legally', () => {
       const initialState = Map({
         direction: 'LEFT',
-        snake: List.of(0),
+        snake: List.of(1),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -133,16 +141,57 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'LEFT',
         snake: [0],
+        length: 1,
+        playing: true,
+        gameover: false
+      }))
+    })
+    it('doesn\'t go LEFT illegally',() => {
+      const initialState = Map({
+        direction: 'LEFT',
+        snake: List.of(0),
+        length: 1,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'LEFT',
+        snake: [0],
+        length: 1,
         playing: false,
         gameover: true
       }))
     })
 
-    it('goes RIGHT legally')
+    it('goes RIGHT legally', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(1),
+        length: 1,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'RIGHT',
+        snake: [2],
+        length: 1,
+        playing: true,
+        gameover: false
+      }))
+    })
     it('doesn\'t go RIGHT illegally', () => {
       const initialState = Map({
         direction: 'RIGHT',
         snake: List.of(29),
+        length: 1,
         playing: true,
         gameover: false
       })
@@ -153,6 +202,7 @@ describe('reducers', () => {
       expect(nextState).to.equal(fromJS({
         direction: 'RIGHT',
         snake: [29],
+        length: 1,
         playing: false,
         gameover: true
       }))
@@ -160,15 +210,98 @@ describe('reducers', () => {
 
   })
   describe('NEXT snake behavior', () => {
-    it('doesn\'t eat itself')
-    it('increases in length after eating')
+    it('doesn\'t eat itself', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(28, 29),
+        length: 2,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'RIGHT',
+        snake: [29, 28],
+        length: 2,
+        playing: false,
+        gameover: true
+      }))
+    })
+    it('increases in length after eating', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(1),
+        length: 1,
+        food: 2,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState.get('length')).to.equal(2)
+      expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
+    })
   })
   describe('NEXT food behavior', () => {
-    it('consumes food')
-    it('appears in new place after being consumed')
+    it('consumes food', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(1),
+        length: 1,
+        food: 2,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState.get('length')).to.equal(2)
+      expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
+      expect(nextState.get('food')).to.not.equal(2)
+    })
+    it('appears in new place after being consumed', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(1),
+        length: 1,
+        food: 2,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState.get('food')).to.be.ok
+      expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
+      expect(nextState.get('food')).to.not.equal(2)
+    })
   })
   describe('NEXT score behavior', () => {
-    it('increases on food consumption')
-    it('increases with multiplier of snake length')
+    it('increases on food consumption', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(1),
+        length: 1,
+        food: 2,
+        score: 1,
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState.get('food')).to.be.ok
+      expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
+      expect(nextState.get('food')).to.not.equal(2)
+      expect(nextState.get('score')).to.equal(2)
+    })
   })
 })
