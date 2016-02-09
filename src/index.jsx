@@ -6,6 +6,8 @@ import Router, { Route } from 'react-router'
 import { AppContainer } from './components/App.jsx'
 import reducer from './reducer.js'
 
+require('../styles/main.scss')
+
 const store = createStore(reducer)
 
 ReactDOM.render(

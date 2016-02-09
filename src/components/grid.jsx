@@ -19,7 +19,7 @@ export class Grid extends Component {
       cells.push(<Cell occupant={this.checkCellOccupant(index)} key={index} />)
     })
     return(
-      <div>
+      <div className="grid">
         { cells }
       </div>
     )

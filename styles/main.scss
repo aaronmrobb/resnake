@@ -1,0 +1,20 @@
+.grid {
+  width: 600px;
+  height: 600px;
+  display: block;
+  margin: auto;
+  border: 1px solid black;
+  div {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #fff;
+    display: inline-block;
+    float:left;
+  }
+  .snake {
+    background-color: green;
+  }
+
+  .food {
+    background-color: red;
+  }}

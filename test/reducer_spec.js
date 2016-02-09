@@ -243,7 +243,7 @@ describe('reducers', () => {
         type: 'NEXT'
       }
       const nextState = reducer(initialState, action)
-      expect(nextState.get('length')).to.equal(2)
+      expect(nextState.get('length')).to.equal(5)
       expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
     })
   })
@@ -261,7 +261,7 @@ describe('reducers', () => {
         type: 'NEXT'
       }
       const nextState = reducer(initialState, action)
-      expect(nextState.get('length')).to.equal(2)
+      expect(nextState.get('length')).to.equal(5)
       expect(nextState.get('snake').indexOf(nextState.get('food'))).to.equal(-1)
       expect(nextState.get('food')).to.not.equal(2)
     })

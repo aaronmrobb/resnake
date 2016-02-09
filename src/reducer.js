@@ -47,8 +47,8 @@ function checkFood(state) {
     while(state.get('snake').indexOf(newFood) !== -1) {
       newFood = generateFood()
     }
-    return state.set('length', state.get('length') + 1)
-                .set('food', generateFood)
+    return state.set('length', state.get('length') + 4)
+                .set('food', newFood)
                 .set('score', state.get('score') + 1)
   }
   return state

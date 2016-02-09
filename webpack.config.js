@@ -1,4 +1,5 @@
-var webpack = require('webpack')
+const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   entry: [
@@ -11,8 +12,12 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
-    }]
-  },
+    },
+    {
+      test: /\.scss$/,
+      loader: 'style!css!sass'
+    }
+  ]},
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -24,6 +29,9 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
+  sassLoader: {
+     includePaths: [path.resolve(__dirname, "./styles")]
+   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
