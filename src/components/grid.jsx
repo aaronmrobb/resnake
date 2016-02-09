@@ -8,9 +8,16 @@ export class Grid extends Component {
   constructor(props){
     super(props)
   }
+  checkCellOccupant(cellIndex) {
+    const { snake, food } = this.props
+    return snake.indexOf(cellIndex) !== -1 ? 'snake' : food === cellIndex ? 'food' : 'empty'
+  }
   render() {
-    const blah = new Array(10).fill('x')
-    const cells =  blah.map((bla, index)=> <Cell key={index} />)
+    const { grid } = this.props
+    const cells = []
+    grid.map((cell, index) => {
+      cells.push(<Cell occupant={this.checkCellOccupant(index)} key={index} />)
+    })
     return(
       <div>
         { cells }
@@ -23,6 +30,7 @@ reactMixin(Grid.prototype, PureRenderMixin)
 
 function mapStateToProps(state) {
   return {
+    grid: state.get('grid'),
     snake: state.get('snake'),
     food: state.get('food')
   }

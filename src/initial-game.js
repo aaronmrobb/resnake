@@ -1,6 +1,7 @@
-import { Map, List } from 'immutable'
+import { Map, List, fromJS } from 'immutable'
 
 const initialGame = Map({
+  grid: fromJS(new Array(900).fill('')),
   direction: 'RIGHT',
   snake: List.of(1),
   length: 1,
