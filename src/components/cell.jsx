@@ -9,7 +9,7 @@ class Cell extends Component {
   render() {
     return(
       <div className={this.props.occupant}>
-        Cell
+        Cell1
       </div>
     )
   }
