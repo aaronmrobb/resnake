@@ -58,7 +58,7 @@ describe('reducers', () => {
       const nextState = reducer(initialState, action)
       expect(nextState).to.equal(fromJS({
         direction: 'UP',
-        snake: List.of(37),
+        snake: [37],
         playing: true,
         gameover: false
       }))
@@ -76,19 +76,87 @@ describe('reducers', () => {
       const nextState = reducer(initialState, action)
       expect(nextState).to.equal(fromJS({
         direction: 'UP',
-        snake: List.of(1),
+        snake: [1],
         playing: false,
         gameover: true
       }))
     })
-    it('goes DOWN legally')
-    it('doesn\'t go DOWN illegally')
+    it('goes DOWN legally', () => {
+      const initialState = Map({
+        direction: 'DOWN',
+        snake: List.of(1),
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'DOWN',
+        snake: [31],
+        playing: true,
+        gameover: false
+      }))
+    })
+    it('doesn\'t go DOWN illegally', () => {
+      const initialState = Map({
+        direction: 'DOWN',
+        snake: List.of(899),
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'DOWN',
+        snake: [899],
+        playing: false,
+        gameover: true
+      }))
+    })
 
     it('goes LEFT legally')
-    it('doesn\'t go LEFT illegally')
+    it('doesn\'t go LEFT illegally',() => {
+      const initialState = Map({
+        direction: 'LEFT',
+        snake: List.of(0),
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'LEFT',
+        snake: [0],
+        playing: false,
+        gameover: true
+      }))
+    })
 
     it('goes RIGHT legally')
-    it('doesn\'t go RIGHT illegally')
+    it('doesn\'t go RIGHT illegally', () => {
+      const initialState = Map({
+        direction: 'RIGHT',
+        snake: List.of(29),
+        playing: true,
+        gameover: false
+      })
+      const action = {
+        type: 'NEXT'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'RIGHT',
+        snake: [29],
+        playing: false,
+        gameover: true
+      }))
+    })
 
   })
   describe('NEXT snake behavior', () => {
