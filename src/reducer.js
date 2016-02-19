@@ -1,8 +1,16 @@
-import { List, Map } from 'immutable'
+import { List, Map, fromJS } from 'immutable'
 import initialGame from './initial-game.js'
 
 function startGame(state) {
-  return state.set('playing', true)
+  return Map({
+    grid: fromJS(new Array(900).fill('')),
+    direction: 'RIGHT',
+    snake: List.of(1),
+    length: 1,
+    food: parseInt(Math.random() * 899),
+    playing: true,
+    gameover: false
+  })
 }
 
 function changeDirection(state, direction) {

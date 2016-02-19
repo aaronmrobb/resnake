@@ -9,8 +9,8 @@ export class Grid extends Component {
     super(props)
   }
   checkCellOccupant(cellIndex) {
-    const { snake, food } = this.props
-    return snake.indexOf(cellIndex) !== -1 ? 'snake' : food === cellIndex ? 'food' : 'empty'
+    const {snake, food } = this.props
+    return !snake ? 'empty' : snake.indexOf(cellIndex) !== -1 ? 'snake' : food === cellIndex ? 'food' : 'empty'
   }
   render() {
     const { grid } = this.props
