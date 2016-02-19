@@ -17,7 +17,20 @@ describe('reducers', () => {
         playing: true
       }))
     })
-    it('handles CHANGE_DIRECTION', () => {
+    it('handles CHANGE_DIRECTION when not trying to go the opposite direction', () => {
+      const initialState = Map({
+        direction: 'RIGHT'
+      })
+      const action = {
+        type: 'CHANGE_DIRECTION',
+        direction: 'DOWN'
+      }
+      const nextState = reducer(initialState, action)
+      expect(nextState).to.equal(fromJS({
+        direction: 'DOWN'
+      }))
+    })
+    it('does change direction when attempting to move in opposite of current direction', () => {
       const initialState = Map({
         direction: 'UP'
       })
@@ -27,7 +40,7 @@ describe('reducers', () => {
       }
       const nextState = reducer(initialState, action)
       expect(nextState).to.equal(fromJS({
-        direction: 'DOWN'
+        direction: 'UP'
       }))
     })
     it('handles SET_USER', () => {
