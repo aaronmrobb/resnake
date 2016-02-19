@@ -38,7 +38,7 @@ export class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="container">
         <GridContainer />
         <button disabled={this.props.gameover || this.props.playing} onClick={this.props.startGame}>Start Game</button>
       </div>
