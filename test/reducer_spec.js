@@ -13,9 +13,7 @@ describe('reducers', () => {
         type: 'START_GAME'
       }
       const nextState = reducer(initialState, action)
-      expect(nextState).to.equal(fromJS({
-        playing: true
-      }))
+      expect(nextState.get('playing')).to.be.true
     })
     it('handles CHANGE_DIRECTION when not trying to go the opposite direction', () => {
       const initialState = Map({
