@@ -45,8 +45,8 @@ export class App extends Component {
     }
   }
   render() {
-    const gameover = <div>Gameover<span className="instructions">Hit space to restart</span></div>
-    const newgame = <div>New Game<span className="instructions">Hit space to start</span></div>
+    const gameover = <div>Gameover <span className="instructions">Hit space to restart</span></div>
+    const newgame = <div>New Game <span className="instructions">Hit space to start</span></div>
     return (
       <div className="container">
         <div className="game">
