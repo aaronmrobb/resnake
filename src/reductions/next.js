@@ -16,24 +16,18 @@ export default next
 function moveSnake(state, change) {
   const currentHead = state.get('snake').get(0)
   const nextHead = currentHead + change
-  if(nextHead < 0 ||
+  return nextHead < 0 ||
     nextHead > 900 ||
     (currentHead % 30 === 0 && change === -1) ||
-    ((currentHead + 1) % 30 === 0 && change === 1))
-  {
-    return state.set('playing', false).set('gameover', true)
-  } else {
-    return checkSnake(checkFood(state.set('snake', state.get('snake').unshift(nextHead))))
-  }
-  return state
+    ((currentHead + 1) % 30 === 0 && change === 1) ?
+    state.set('playing', false).set('gameover', true) :
+    checkSnake(checkFood(state.set('snake', state.get('snake').unshift(nextHead))))
 }
 
 function checkFood(state) {
   if(state.get('food') === state.get('snake').first()){
     let newFood = generateFood()
-    while(state.get('snake').indexOf(newFood) !== -1) {
-      newFood = generateFood()
-    }
+    while(state.get('snake').indexOf(newFood) !== -1) { newFood = generateFood() }
     return state.set('length', state.get('length') + 4)
                 .set('food', newFood)
                 .set('score', state.get('score') + 1)
@@ -46,13 +40,11 @@ function generateFood() {
 }
 
 function checkSnake(state) {
-  if(state.get('snake').indexOf(state.get('snake').first()) !==
-  state.get('snake').lastIndexOf(state.get('snake').first())){
-    return state.set('playing', false)
-                .set('gameover', true)
-                .set('snake', state.get('snake').pop())
-  } else if (state.get('snake').size > state.get('length')){
-    return state.set('snake', state.get('snake').pop())
-  }
-  return state
+  return state.get('snake').indexOf(state.get('snake').first()) !==
+    state.get('snake').lastIndexOf(state.get('snake').first()) ?
+    state.set('playing', false).set('gameover', true).set('snake', state.get('snake').pop()) :
+    state.get('snake').size > state.get('length') ?
+      state.set('snake', state.get('snake').pop()) :
+      state
+
 }
