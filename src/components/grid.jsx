@@ -5,9 +5,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { connect } from 'react-redux'
 
 export class Grid extends Component {
-  constructor(props){
-    super(props)
-  }
+
   checkCellOccupant(cellIndex) {
     const {snake, food } = this.props
     return !snake ? 'empty' : snake.indexOf(cellIndex) !== -1 ? 'snake' : food === cellIndex ? 'food' : 'empty'

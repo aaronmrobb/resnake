@@ -7,9 +7,6 @@ import { connect } from 'react-redux'
 import * as actionCreators from '../action_creators'
 
 export class App extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentWillMount(){
     window.addEventListener("keyup", (e) => {
      this.handleKeyup(e.keyCode)
