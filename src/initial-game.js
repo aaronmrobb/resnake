@@ -7,7 +7,8 @@ const initialGame = Map({
   length: 0,
   food: 0,
   playing: false,
-  gameover: false
+  gameover: false,
+  score: 0
 })
 
 export default initialGame

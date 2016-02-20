@@ -8,7 +8,8 @@ function startGame(state) {
     length: 1,
     food: parseInt(Math.random() * 899),
     playing: true,
-    gameover: false
+    gameover: false,
+    score: 0
   })
 }
 

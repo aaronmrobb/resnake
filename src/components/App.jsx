@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GridContainer } from './Grid.jsx'
+import { ScoreContainer } from './Score.jsx'
 import reactMixin from 'react-mixin'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { connect } from 'react-redux'
@@ -9,11 +10,14 @@ export class App extends Component {
   constructor(props) {
     super(props)
   }
+  componentWillMount(){
+    window.addEventListener("keyup", (e) => {
+     this.handleKeyup(e.keyCode)
+   })
+  }
   componentWillUpdate(props){
+
     if(props.playing) {
-      window.addEventListener("keyup", (e) => {
-       this.handleKeyup(e.keyCode)
-     })
      this.interval = setInterval(this.props.next, 100)
    } else {
      window.removeEventListener("keyup")
@@ -21,7 +25,11 @@ export class App extends Component {
    }
   }
   handleKeyup(key) {
+
     switch (key) {
+      case 32:
+        this.props.startGame()
+        break;
       case 37:
         this.props.changeDirection('LEFT')
           break;
@@ -39,8 +47,18 @@ export class App extends Component {
   render() {
     return (
       <div className="container">
-        <GridContainer />
-        <button disabled={this.props.playing} onClick={this.props.startGame}>{this.props.gameover ? "Restart Game" : "Start Game" }</button>
+        <div className="game">
+          <GridContainer />
+          <div id="status-message"></div>
+        </div>
+        <div className="sidebar">
+          <ScoreContainer />
+          <div className="key">
+            <h3>Controls</h3>
+            <p>&larr; &uarr; &rarr;	&darr; for movement</p>
+            <p>Spacebar for starting / restarting</p>
+          </div>
+        </div>
       </div>
     )
   }
