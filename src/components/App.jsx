@@ -45,13 +45,14 @@ export class App extends Component {
     }
   }
   render() {
+    const gameover = <div>Gameover<span className="instructions">Hit space to restart</span></div>
+    const newgame = <div>New Game<span className="instructions">Hit space to start</span></div>
     return (
       <div className="container">
         <div className="game">
           <GridContainer />
-          <div id="status-message" style={{display: this.props.gameover ? "block" : "none"}}>
-            Gameover
-            <span className="instructions">Hit space to restart</span>
+          <div id="status-message" style={{display: this.props.gameover || !this.props.playing ? "block" : "none"}}>
+            { this.props.gameover ? gameover : newgame}
           </div>
         </div>
         <div className="sidebar">
