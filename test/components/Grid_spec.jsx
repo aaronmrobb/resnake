@@ -22,4 +22,12 @@ describe('<Grid/>', () => {
     const wrapper = shallow(<Grid grid={new Array(900).fill('')} snake={[0, 1]} food={1}/>)
     expect(wrapper.find('Cell').length).to.equal(900)
   })
+  it('is opaque when game is being player', () => {
+    const wrapper = shallow(<Grid grid={new Array(900).fill('')} snake={[0, 1]} food={1} gameover={false}/>)
+    expect(wrapper).to.have.style('opacity', '1')
+  })
+  it('fades when game is over', () => {
+    const wrapper = shallow(<Grid grid={new Array(900).fill('')} snake={[0, 1]} food={1} gameover={true}/>)
+    expect(wrapper).to.have.style('opacity', '0.5')
+  })
 })
