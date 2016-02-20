@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+body {
+  font-family: 'Roboto'
+}
+
 .grid {
   width: 600px;
   height: 600px;
@@ -12,6 +18,7 @@
     float:left;
   }
   .snake {
+    border-color: green;
     background-color: green;
   }
 
@@ -43,15 +50,21 @@
   }
   .key {
 
+    p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
     h3 {
-    font-size: 2rem;
-    margin: 0;
-    line-height: 3rem;
+    font-size: 1.5rem;
+    margin: 15px 0 ;
+    line-height: 2rem;
   }
 }
 }
 
 #status-message {
+  font-weight: bold;
   font-size: 4rem;
   text-transform: uppercase;
   line-height: 5rem;
@@ -59,5 +72,8 @@
   width: 100%;
   text-align: center;
   top: 250px;
-
+  .instructions {
+    display: block;
+    font-size: 1.2rem;
+  }
 }

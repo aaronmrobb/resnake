@@ -51,14 +51,15 @@ export class App extends Component {
           <GridContainer />
           <div id="status-message" style={{display: this.props.gameover ? "block" : "none"}}>
             Gameover
+            <span className="instructions">Hit space to restart</span>
           </div>
         </div>
         <div className="sidebar">
           <ScoreContainer />
           <div className="key">
             <h3>Controls</h3>
-            <p>&larr; &uarr; &rarr;	&darr; for movement</p>
-            <p>Spacebar for starting / restarting</p>
+            <p>&larr; &uarr; &rarr;	&darr; to move</p>
+            <p>Spacebar to play</p>
           </div>
         </div>
       </div>

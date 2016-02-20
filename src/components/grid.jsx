@@ -19,7 +19,7 @@ export class Grid extends Component {
       cells.push(<Cell occupant={this.checkCellOccupant(index)} key={index} />)
     })
     return(
-      <div className="grid">
+      <div className="grid" style={{opacity: this.props.gameover ? .5 : 1}}>
         { cells }
       </div>
     )
@@ -32,7 +32,8 @@ function mapStateToProps(state) {
   return {
     grid: state.get('grid'),
     snake: state.get('snake'),
-    food: state.get('food')
+    food: state.get('food'),
+    gameover: state.get('gameover')
   }
 }
 
