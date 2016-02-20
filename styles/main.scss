@@ -28,7 +28,7 @@
 .game {
   width: 70%;
   float: left;
-
+  position: relative;
   display: inline-block;
 }
 
@@ -49,4 +49,15 @@
     line-height: 3rem;
   }
 }
+}
+
+#status-message {
+  font-size: 4rem;
+  text-transform: uppercase;
+  line-height: 5rem;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 250px;
+
 }

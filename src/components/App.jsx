@@ -49,7 +49,9 @@ export class App extends Component {
       <div className="container">
         <div className="game">
           <GridContainer />
-          <div id="status-message"></div>
+          <div id="status-message" style={{display: this.props.gameover ? "block" : "none"}}>
+            Gameover
+          </div>
         </div>
         <div className="sidebar">
           <ScoreContainer />
