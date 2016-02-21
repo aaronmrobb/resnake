@@ -16,18 +16,18 @@ export default next
 function moveSnake(state, change) {
   const currentHead = state.get('snake').get(0)
   const nextHead = currentHead + change
-  return nextHead < 0 ||
-    nextHead > 900 ||
-    (currentHead % 30 === 0 && change === -1) ||
+  return nextHead < 0 || nextHead > 900 || (currentHead % 30 === 0 && change === -1) ||
     ((currentHead + 1) % 30 === 0 && change === 1) ?
     state.set('playing', false).set('gameover', true) :
     checkSnake(checkFood(state.set('snake', state.get('snake').unshift(nextHead))))
 }
 
 function checkFood(state) {
-  if(state.get('food') === state.get('snake').first()){
+  if(state.get('food') === state.get('snake').first()) {
     let newFood = generateFood()
-    while(state.get('snake').indexOf(newFood) !== -1) { newFood = generateFood() }
+    while(state.get('snake').indexOf(newFood) !== -1) {
+      newFood = generateFood()
+    }
     return state.set('length', state.get('length') + 4)
                 .set('food', newFood)
                 .set('score', state.get('score') + 1)
