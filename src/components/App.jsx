@@ -57,7 +57,7 @@ export class App extends Component {
           <div className="key">
             <h3>Controls</h3>
             <p>&larr; &uarr; &rarr;	&darr; to move</p>
-            <p>Spacebar to play</p>
+            <p>SPACEBAR to play</p>
           </div>
         </div>
       </div>

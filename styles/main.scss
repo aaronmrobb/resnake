@@ -1,9 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-@import url(https://fonts.googleapis.com/css?family=Michroma);
-
+@import url(https://fonts.googleapis.com/css?family=Michroma|Abel);
 
 body {
-  font-family: 'Roboto';
+  font-family: 'Abel';
   background-color: #f1c40f;
 }
 
@@ -52,15 +50,16 @@ body {
 }
 
 .sidebar {
-  margin-top: 77px;
-  width: 25%;
-  padding: 15px;
-  box-sizing: border-box;
-  border: 10px solid#d35400;
+  margin-top: 67px;
+  width: 18%;
+
   float: left;
   display: inline-block;
   .score {
-    font-size: 3rem;
+    padding: 50px 0;
+    box-sizing: border-box;
+    border: 10px solid#d35400;
+    font-size: 6rem;
     width: 100%;
     text-align: center;
     line-height: 4rem;
@@ -68,15 +67,17 @@ body {
 
   }
   .key {
-    text-align: center;
+    padding: 0 20px;
+    color: white;
     p{
       margin: 0;
-      font-size: 1rem;
+      font-size: 1.2rem;
       line-height: 1.5rem;
     }
     h3 {
+    text-transform: uppercase;
     font-size: 1.5rem;
-    margin: 15px 0 ;
+    margin: 15px 0 0 0;
     line-height: 2rem;
   }
 }
