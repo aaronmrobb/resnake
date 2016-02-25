@@ -1,24 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
 @import url(https://fonts.googleapis.com/css?family=Michroma);
 
+
 body {
-  font-family: 'Roboto'
+  font-family: 'Roboto';
+  background-color: #f1c40f;
 }
 
 .site-title {
   font-family: 'Michroma';
   text-transform:  uppercase;
   text-align: center;
-  margin: 10px;
+  color: white;
+  margin: 5px;
   font-size: 2.5rem;
 }
 
 .grid {
+  background-color: white;
   width: 600px;
   height: 600px;
   display: block;
   margin: auto;
-  border: 1px solid black;
+  border: 10px solid#d35400;
   div {
     width: 18px;
     height: 18px;
@@ -41,24 +45,30 @@ body {
 }
 
 .game {
-  width: 70%;
+  width: 65%;
   float: left;
   position: relative;
   display: inline-block;
 }
 
 .sidebar {
-  margin-top: 100px;
-  width: 30%;
+  margin-top: 77px;
+  width: 25%;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 10px solid#d35400;
   float: left;
   display: inline-block;
   .score {
     font-size: 3rem;
     width: 100%;
+    text-align: center;
     line-height: 4rem;
+    color: white;
+
   }
   .key {
-
+    text-align: center;
     p{
       margin: 0;
       font-size: 1rem;
@@ -82,9 +92,10 @@ body {
   text-align: center;
   top: 250px;
   h3{
+    color:#d35400;
     font-family: 'Michroma';
-
     margin: 0;
+
   }
   .instructions {
     display: block;

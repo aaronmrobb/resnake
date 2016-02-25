@@ -14,10 +14,10 @@ export class Grid extends Component {
     const { grid } = this.props
     const cells = []
     grid.map((cell, index) => {
-      cells.push(<Cell occupant={this.checkCellOccupant(index)} key={index} />)
+      cells.push(<Cell occupant={this.checkCellOccupant(index)} key={index} gameover={this.props.gameover}/>)
     })
     return(
-      <div className="grid" style={{opacity: this.props.gameover ? .5 : 1}}>
+      <div className="grid">
         { cells }
       </div>
     )

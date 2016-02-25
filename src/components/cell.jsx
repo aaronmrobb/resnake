@@ -6,7 +6,7 @@ class Cell extends Component {
 
   render() {
     return(
-      <div className={this.props.occupant}>
+      <div className={this.props.occupant} style={{opacity: this.props.gameover ? 0.3 : 1}}>
       </div>
     )
   }

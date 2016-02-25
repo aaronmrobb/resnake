@@ -25,4 +25,12 @@ describe('<Cell/>', () => {
     const wrapper = shallow(<Cell occupant='snake'/>)
     expect(wrapper).to.have.className('snake')
   })
+  it('is opaque when game is being played', () => {
+    const wrapper = shallow(<Cell occupant='snake' gameover={false}/>)
+    expect(wrapper).to.have.style('opacity', '1')
+  })
+  it('fades when game is over', () => {
+    const wrapper = shallow(<Cell occupant='snake' gameover={true}/>)
+    expect(wrapper).to.have.style('opacity', '0.3')
+  })
 })
