@@ -13,7 +13,6 @@ export class App extends Component {
    })
   }
   componentWillUpdate(props){
-
     if(props.playing) {
      this.interval = setInterval(this.props.next, 100)
    } else {
@@ -42,11 +41,12 @@ export class App extends Component {
     }
   }
   render() {
-    const gameover = <div>Gameover <span className="instructions">Hit space to restart</span></div>
-    const newgame = <div>New Game <span className="instructions">Hit space to start</span></div>
+    const gameover = <div><h3>Gameover</h3><span className="instructions">Hit space to restart</span></div>
+    const newgame = <div><h3>New Game</h3><span className="instructions">Hit space to start</span></div>
     return (
       <div className="container">
         <div className="game">
+          <h1 className="site-title">Super Snake Bros</h1>
           <GridContainer />
           <div id="status-message" style={{display: this.props.gameover || !this.props.playing ? "block" : "none"}}>
             { this.props.gameover ? gameover : newgame}
