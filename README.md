@@ -1,2 +1,2 @@
-# snakedux
-Classic snake with react redux
+#resnake
+React redux with immutable.
